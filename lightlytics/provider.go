@@ -58,5 +58,11 @@ func providerConfigure(ctx context.Context, d *schema.ResourceData) (interface{}
 		return c, diags
 	}
 
+	diags = append(diags, diag.Diagnostic{
+		Severity: diag.Error,
+		Summary:  "Unable to create Lightlytics client",
+		Detail:   "Missing host, username or password",
+	  })
+
 	return nil, diags
 }
