@@ -51,6 +51,22 @@ func resourceAccount() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"external_id": &schema.Schema{
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"lightlytics_collection_token": &schema.Schema{
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"account_aliases": &schema.Schema{
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"token": &schema.Schema{
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 		},
 	}
 }
@@ -77,8 +93,12 @@ func resourceAccountCreate(ctx context.Context, d *schema.ResourceData, m interf
 				stack_region: $stack_region
 			  })
 			{
+				_id
 				template_url
-				 _id
+				external_id
+				lightlytics_collection_token
+				account_aliases
+				token
 			}
 	}`
 
@@ -97,11 +117,14 @@ func resourceAccountCreate(ctx context.Context, d *schema.ResourceData, m interf
 
     account := data["createAccount"].(map[string]interface{})
 
-    id := account["_id"].(string)
-    template_url := account["template_url"].(string)
+	id := account["_id"].(string)
 
     d.SetId(id)
-    d.Set("template_url", template_url)
+    d.Set("template_url", account["template_url"])
+    d.Set("external_id", account["external_id"])
+    d.Set("lightlytics_collection_token", account["lightlytics_collection_token"])
+    d.Set("account_aliases", account["account_aliases"])
+    d.Set("token", account["token"])
 
 	return diags
 }
@@ -145,6 +168,10 @@ func resourceAccountRead(ctx context.Context, d *schema.ResourceData, m interfac
 			d.Set("aws_regions", account["aws_regions"])
 			d.Set("stack_region", account["stack_region"])
 			d.Set("template_url", account["template_url"])
+			d.Set("external_id", account["external_id"])
+			d.Set("lightlytics_collection_token", account["lightlytics_collection_token"])
+			d.Set("account_aliases", account["account_aliases"])
+			d.Set("token", account["token"])
 		}
 	}
 	
