@@ -41,3 +41,5 @@ resource "lightlytics_account" "aws" {
   stack_region = "us-east-1"
 }
 ```
+
+Find more examples in `/examples` 
