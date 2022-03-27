@@ -1,4 +1,4 @@
-# lightlytics-provider
+# terraform-provider-lightlytics
 Terraform Provider for Lightlytics
 
 ## How to build/install
