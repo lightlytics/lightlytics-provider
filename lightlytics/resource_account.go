@@ -67,6 +67,10 @@ func resourceAccount() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+            "temp": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 		},
 	}
 }
@@ -172,8 +176,6 @@ func resourceAccountRead(ctx context.Context, d *schema.ResourceData, m interfac
 			d.Set("lightlytics_collection_token", account["lightlytics_collection_token"])
 			d.Set("account_aliases", account["account_aliases"])
 			d.Set("token", account["token"])
-
-            marshalData(d, account)
 		}
 	}
 
