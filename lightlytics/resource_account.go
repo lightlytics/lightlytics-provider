@@ -67,10 +67,6 @@ func resourceAccount() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-            "temp": {
-				Type:     schema.TypeString,
-				Computed: true,
-			},
 		},
 	}
 }
