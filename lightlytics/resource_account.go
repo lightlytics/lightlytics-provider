@@ -63,7 +63,7 @@ func resourceAccount() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"token": &schema.Schema{
+			"account_auth_token": &schema.Schema{
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -98,7 +98,7 @@ func resourceAccountCreate(ctx context.Context, d *schema.ResourceData, m interf
 				external_id
 				lightlytics_collection_token
 				account_aliases
-				token
+				account_auth_token
 			}
 	}`
 
@@ -124,7 +124,7 @@ func resourceAccountCreate(ctx context.Context, d *schema.ResourceData, m interf
     d.Set("external_id", account["external_id"])
     d.Set("lightlytics_collection_token", account["lightlytics_collection_token"])
     d.Set("account_aliases", account["account_aliases"])
-    d.Set("token", account["token"])
+    d.Set("account_auth_token", account["account_auth_token"])
 
 	return diags
 }
@@ -171,7 +171,7 @@ func resourceAccountRead(ctx context.Context, d *schema.ResourceData, m interfac
 			d.Set("external_id", account["external_id"])
 			d.Set("lightlytics_collection_token", account["lightlytics_collection_token"])
 			d.Set("account_aliases", account["account_aliases"])
-			d.Set("token", account["token"])
+			d.Set("account_auth_token", account["account_auth_token"])
 		}
 	}
 
