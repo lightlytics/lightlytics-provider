@@ -2,7 +2,6 @@ package lightlytics
 
 import (
 	"context"
-
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -26,6 +25,10 @@ func Provider() *schema.Provider {
 				Optional:    true,
 				Sensitive:   true,
 				DefaultFunc: schema.EnvDefaultFunc("LIGHTLYTICS_PASSWORD", nil),
+			},
+            "workspace_id": &schema.Schema{
+				Type:        schema.TypeString,
+				Optional:    true,
 			},
 		},
 		ResourcesMap: map[string]*schema.Resource{
