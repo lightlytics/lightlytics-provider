@@ -29,6 +29,7 @@ func Provider() *schema.Provider {
             "workspace_id": &schema.Schema{
 				Type:        schema.TypeString,
 				Optional:    true,
+                DefaultFunc: schema.EnvDefaultFunc("WORKSPACE_ID", nil),
 			},
 		},
 		ResourcesMap: map[string]*schema.Resource{
