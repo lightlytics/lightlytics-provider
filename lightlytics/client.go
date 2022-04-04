@@ -8,15 +8,17 @@ import "github.com/machinebox/graphql"
 type Client struct {
     graphqlClient *graphql.Client
     Token string
+    Workspace string
 }
 
-func NewClient(host, username, password *string) (*Client, error) {
+func NewClient(host, username, password, workspace_id *string) (*Client, error) {
 
     c := Client{
         graphqlClient: graphql.NewClient(fmt.Sprintf("%s/graphql", *host)),
     }
 
     c.Token = ""
+    c.Workspace = workspace_id
 
     err := c.authenticate(username, password)
 
@@ -59,6 +61,9 @@ func (c *Client) doRequest(query string, variables map[string]interface{}) (map[
 
     if c.Token != "" {
         req.Header.Set("Authorization", "Bearer " + c.Token)
+    }
+    if c.Workspace != nil {
+        req.Header.Set("customer", c.Workspace)
     }
 
     if variables != nil {

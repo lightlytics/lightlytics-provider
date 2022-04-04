@@ -41,11 +41,12 @@ func providerConfigure(ctx context.Context, d *schema.ResourceData) (interface{}
 	host := d.Get("host").(string)
 	username := d.Get("username").(string)
 	password := d.Get("password").(string)
+    workspace_id := d.Get("workspace_id").(string)
 
 	var diags diag.Diagnostics
 
 	if (host != "") && (username != "") && (password != "") {
-		c, err := NewClient(&host, &username, &password)
+		c, err := NewClient(&host, &username, &password, &workspace_id)
 		if err != nil {
 			diags = append(diags, diag.Diagnostic{
 				Severity: diag.Error,
