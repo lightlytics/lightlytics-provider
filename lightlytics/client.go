@@ -62,7 +62,7 @@ func (c *Client) doRequest(query string, variables map[string]interface{}) (map[
     if c.Token != "" {
         req.Header.Set("Authorization", "Bearer " + c.Token)
     }
-    if c.Workspace != nil {
+    if len(c.Workspace) != 0 {
         req.Header.Set("customer", c.Workspace)
     }
 
