@@ -8,7 +8,7 @@ import "github.com/machinebox/graphql"
 type Client struct {
     graphqlClient *graphql.Client
     Token string
-    Workspace string
+    Workspace *string
 }
 
 func NewClient(host, username, password, workspace_id *string) (*Client, error) {
