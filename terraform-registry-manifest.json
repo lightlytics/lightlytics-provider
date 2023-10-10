@@ -1,0 +1,6 @@
+curl --output .goreleaser.yml https://raw.githubusercontent.com/hashicorp/terraform-provider-scaffolding/main/.goreleaser.yml{
+    "version": 1,
+    "metadata": {
+        "protocol_versions": ["5.0"]
+    }
+}
